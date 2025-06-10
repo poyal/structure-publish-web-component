@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="icon" type="image/svg+xml" href="/vite.svg"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vite App</title>
+
+  <script src="/src/main.js" type="module"></script>
+
+  <script>
+    function random() {
+      return parseInt(`${Math.random() * 100000}`);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('#props-change').addEventListener('@click', () => {
+        document.querySelector('#album-detail').setAttribute('props1', `${random()}`);
+        document.querySelector('#album-detail').setAttribute('props2', `${random()}`);
+        document.querySelector('#album-detail').setAttribute('long-name-props', `${random()}`);
+      });
+
+      document.querySelector('#album-search').addEventListener('@apply', (event) => {
+        document.querySelector('#search-event').innerHTML = JSON.stringify(event.detail);
+      });
+    });
+  </script>
+</head>
+<body>
+<div id="app">
+  <h1>Album</h1>
+
+  <div>
+    <album-search id="album-search"></album-search>
+  </div>
+
+  <div id="search-event"></div>
+
+  <h1>BUTTONS</h1>
+
+  <div>
+    <button-red>CUSTOM BUTTON</button-red>
+    <button-red></button-red>
+  </div>
+
+  <div>
+    <button-blue>CUSTOM BLUE</button-blue>
+    <button-blue></button-blue>
+  </div>
+
+  <album-detail id="album-detail"
+                props1="props1"
+                props2="props2"
+                long-name-props="long-name-props">
+    <h1>오늘 날씨는 15도입니다.</h1>
+    <p>기온이 많이 올라갔지만 따뜻하게 입는 것 잊지 마세요!</p>
+  </album-detail>
+
+  <div>
+    <button-blue id="props-change">PROPS CHANGE</button-blue>
+  </div>
+</div>
+</body>
+</html>
